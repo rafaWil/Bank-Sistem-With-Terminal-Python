@@ -26,7 +26,7 @@ Develop a basic banking system with the following operations:
 ## 📋 Detailed Features  
 
 ### **1. User Registration**  
-- Collect basic information: name, ID (e.g., CPF), email.  
+- Collect basic information: name, ID (e.g., CPF), email and balance account.  
 - Set an access password.  
 
 ### **2. Registration Confirmation**  
