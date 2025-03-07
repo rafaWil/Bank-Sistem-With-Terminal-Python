@@ -3,7 +3,9 @@
 
 🌐 **Learn more**: [DIO Bootcamps](https://www.dio.me/bootcamp)  
 
-Stacks Used in this project --> Python and DeepSeek for suport
+### ⚙️ **Tools & Technologies**  
+- **Programming Language**: [Python](https://www.python.org/)  
+- **AI Support**: [DeepSeek](https://www.deepseek.com/) (for intelligent code assistance)  
 
 
 
