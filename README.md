@@ -26,15 +26,14 @@ Develop a basic banking system with the following operations:
 ## 📋 Detailed Features  
 
 ### **1. User Registration**  
-- Collect basic information: name, ID (e.g., CPF), email and balance account.  
-- Set an access password.  
+- Collect basic information: name, ID (e.g., CPF), email and balance account.   
 
 ### **2. Registration Confirmation**  
 - Validate entered data.  
 - **Initial Balance**: User must confirm/add a starting amount.  
 
 ### **3. System Access**  
-- Login using ID and password.  
+- Login using CPF and Full Name.  
 - Clear error messages for invalid credentials.  
 
 ### **4. Operations Menu**  
@@ -50,5 +49,6 @@ After logging in, users can choose:
 
 # Main menu structure:  
 1. Register  
-2. Login  
-3. Exit  
+2. Login
+3. Choice Option
+4. Exit  

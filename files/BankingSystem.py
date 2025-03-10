@@ -20,11 +20,11 @@ def clean_lines():
     print("\033[F\033[K", end="")  # Move para cima novamente e limpa a linha
 
 # Function for Date in format xx/xx/xxxx
-def data_formatada(data):
+def data_format(data):
     return data.strftime('%d/%m/%Y')
 
 # Validating entered date format
-def validar_data(data_str):
+def checking_data(data_str):
     try:
         dateBirth = datetime.strptime(data_str, '%d/%m/%Y')
         return dateBirth
@@ -42,14 +42,24 @@ def register():
     # Loop for check correct format in date birth
     while True:
         data_str = input("Enter Client Date of Birth(dd/mm/yyyy): ")
-        data = validar_data(data_str) # Checking date
+        data = checking_data(data_str) # Checking date
         if data:
             break
         else:
             print("Invalid date format. Please use dd/mm/yyyy")
             input("Press Enter to try again...")  # Pausa para o usuário ver a mensagem
             clean_lines()  # Limpa as linhas anteriores
-        
+
+    # Loop for check CPF
+    while True:
+        cpf = input("CPF Client(Only Numbers): ").strip() # Strip remove white spaces
+        if len(cpf) == 11 and cpf.isdigit(): # Check this eleven numbers
+            break
+        else:
+            print("Invalid CPF. Please use only 11 numbers")
+            input("Press Enter to try again...") 
+            clean_lines()  # Limpa as linhas anteriores
+    
     # Customer's cell phone number
     phone = input("Enter Client Cell Phone: ")
     # Email
