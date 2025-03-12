@@ -27,18 +27,9 @@ Develop a basic banking system with the following operations:
 ### **1. User Registration**  
 - Collect basic information: name, ID (e.g., CPF), email and balance account.   
 
-### **2. Registration Confirmation**  
-- Validate entered data.  
-- **Initial Balance**: User must confirm/add a starting amount.  
 
-### **3. System Access**  
-- Login using CPF and Full Name.  
-- Clear error messages for invalid credentials.  
-
-### **4. Operations Menu**  
-After logging in, users can choose:  
-- **Withdraw**:  
-  - Check available balance before approval.  
+### **2. Operations Menu**  
+After logging in, users can choose:   
 - **Deposit**:  
   - Update balance instantly.  
 - **Balance Inquiry**:  

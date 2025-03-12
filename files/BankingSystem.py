@@ -2,9 +2,9 @@ import os # Operational System
 import re # RegEx
 from datetime import datetime # Data
 import time # Wait for clean terminal
+from reportlab.pdfgen import canvas # For pdf printing
+from reportlab.lib.pagesizes import letter # For define size of page in pdf
 
-# Global variable
-saldo = 1.0 # Every Client initial with $1 dolar in account
 
 
 # Clean the terminal
@@ -39,7 +39,7 @@ def checking_data(data_str):
 # Register part
 def register():
     
-    global name # Permission for modified this variable
+    global name, saldo # Permission for modified this variable
     
     print("------------------ BANK CLEAN ------------------\n")
     # Entering full user name
@@ -72,7 +72,7 @@ def register():
     email = input("-> Enter Client Email: ")
     
     # Entering Balance for client
-    saldo = float(input("-> Balance for Client(first time customer, starts with $1): "))
+    saldo = float(input("-> Balance for Client: $"))
     saldo_formatado = f"{saldo:,.2f}"  # Formata com separadores de milhares e duas casas decimais
     
     input("Click Enter for Continue...")
@@ -89,24 +89,83 @@ def register():
     
 
 # Deposit Function
-def deposit(saldo):
+def deposit():
+    
+    global saldo # Adding this variable for modified in global
+    
     while True:
         try:
             # Request the deposit amount
-            valor = float(input("-> Enter deposit amount: "))
+            valor = float(input("-> Enter deposit amount: $"))
             time.sleep(2)
             cleanTerminal()
             
             if valor > 0:
                 saldo += valor
-                print("")
-                print(f"Deposit successful! New balance in the account {name}: {saldo:,.2f}")
-                return saldo
+                print(f"Deposit successful! New balance in the account {name}: ${saldo:,.2f}")
+                time.sleep(1)
+                cleanTerminal()
+                break
             else:
                 print("Invalid deposit amount. Please enter a positive value.")
         except ValueError:
             print("Invalid deposit amount. Please enter a valid number.")
+            
+# Generate PDF Extract
+def generate_extract(name, saldo):
+    # Define the directory where the PDF will be saved
+    directory = "extracts_clients"
+    
+    # Checks if the directory exists, otherwise creates it
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+    
+    # Set the file name to the full path
+    filename = os.path.join(directory, f"extract_{name}.pdf")
+    
+    # Create the canvas from PDF
+    c = canvas.Canvas(filename, pagesize=letter)
+    
+    # Define the title
+    c.setFont("Helvetica", 14)
+    c.drawString(100, 770, "ACCOUNT STATEMENT - BANCO CLEAN")  
+    
+    c.setFont("Helvetica", 12)
+    c.drawString(100, 740, f"Extract for Client: {name}")
+    c.drawString(100, 720, f"Account Balance: ${saldo:,.2f}")
+    
+    # Save the file PDF
+    c.save()
+    print(f"Extract saved in {filename}")
+
+# Menu function
+def menu():
+    global saldo
+
+    while True:
+        print("\n------ BANK CLEAN ------")
+        print("1️⃣ - Make a Deposit")
+        print("2️⃣ - Generate Account Statement (PDF)")
+        print("3️⃣ - Exit")
+        
+        option = input("Choose an option: ")
+
+        if option == "1":
+            time.sleep(2)
+            cleanTerminal()
+            deposit()
+        elif option == "2":
+            time.sleep(2)
+            cleanTerminal()
+            generate_extract(name, saldo)
+        elif option == "3":
+            print("Exiting...")
+            break
+        else:
+            print("Invalid option. Try again.")
+            cleanTerminal()
+
     
 # Call the Function
 register()
-saldo = deposit(saldo)
+menu()
