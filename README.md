@@ -13,10 +13,9 @@
 
 ## **General Objective**  
 Develop a basic banking system with the following operations:  
-1. **Register User**  
-2. **Confirm Registration** (including initial balance verification)  
-3. **Access Control**  
-4. **Post-Login Options**:  
+1. **Register User**   
+2. **Post-Login Options**:
+ #### After register, choice one this options  
    - 💵 Withdraw  
    - 📥 Deposit  
    - 📊 Check Balance  
