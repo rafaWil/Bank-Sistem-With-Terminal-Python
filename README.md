@@ -15,8 +15,7 @@
 Develop a basic banking system with the following operations:  
 1. **Register User**   
 2. **Post-Login Options**:
- #### After register, choice one this options  
-   - 💵 Withdraw  
+ #### After register, choice one this options    
    - 📥 Deposit  
    - 📊 Check Balance(and remove extract in pdf)  
 
