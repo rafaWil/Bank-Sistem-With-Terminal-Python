@@ -3,6 +3,9 @@ import re # RegEx
 from datetime import datetime # Data
 import time # Wait for clean terminal
 
+# Global variable
+saldo = 1.0 # Every Client initial with $1 dolar in account
+
 
 # Clean the terminal
 def cleanTerminal():
@@ -35,13 +38,16 @@ def checking_data(data_str):
 
 # Register part
 def register():
-    print("------------- BANK CLEAN -------------\n")
+    
+    global name # Permission for modified this variable
+    
+    print("------------------ BANK CLEAN ------------------\n")
     # Entering full user name
-    name = input("Enter full client name: ")
+    name = input("-> Enter full client name: ")
     
     # Loop for check correct format in date birth
     while True:
-        data_str = input("Enter Client Date of Birth(dd/mm/yyyy): ")
+        data_str = input("-> Enter Client Date of Birth(dd/mm/yyyy): ")
         data = checking_data(data_str) # Checking date
         if data:
             break
@@ -52,7 +58,7 @@ def register():
 
     # Loop for check CPF
     while True:
-        cpf = input("CPF Client(Only Numbers): ").strip() # Strip remove white spaces
+        cpf = input("-> CPF Client(Only Numbers): ").strip() # Strip remove white spaces
         if len(cpf) == 11 and cpf.isdigit(): # Check this eleven numbers
             break
         else:
@@ -61,12 +67,12 @@ def register():
             clean_lines()  # Limpa as linhas anteriores
     
     # Customer's cell phone number
-    phone = input("Enter Client Cell Phone: ")
+    phone = input("-> Enter Client Cell Phone: ")
     # Email
-    email = input("Enter Client Email: ")
+    email = input("-> Enter Client Email: ")
     
     # Entering Balance for client
-    saldo = float(input("Balance for Client: "))
+    saldo = float(input("-> Balance for Client(first time customer, starts with $1): "))
     saldo_formatado = f"{saldo:,.2f}"  # Formata com separadores de milhares e duas casas decimais
     
     input("Click Enter for Continue...")
@@ -81,6 +87,26 @@ def register():
     time.sleep(3)
     cleanTerminal()
     
+
+# Deposit Function
+def deposit(saldo):
+    while True:
+        try:
+            # Request the deposit amount
+            valor = float(input("-> Enter deposit amount: "))
+            time.sleep(2)
+            cleanTerminal()
+            
+            if valor > 0:
+                saldo += valor
+                print("")
+                print(f"Deposit successful! New balance in the account {name}: {saldo:,.2f}")
+                return saldo
+            else:
+                print("Invalid deposit amount. Please enter a positive value.")
+        except ValueError:
+            print("Invalid deposit amount. Please enter a valid number.")
     
-# Call the Function 
+# Call the Function
 register()
+saldo = deposit(saldo)
