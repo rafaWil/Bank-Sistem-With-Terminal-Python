@@ -18,7 +18,7 @@ Develop a basic banking system with the following operations:
  #### After register, choice one this options  
    - 💵 Withdraw  
    - 📥 Deposit  
-   - 📊 Check Balance  
+   - 📊 Check Balance(and remove extract in pdf)  
 
 ---
 
