@@ -119,6 +119,9 @@ def generate_extract(name, saldo):
     # Checks if the directory exists, otherwise creates it
     if not os.path.exists(directory):
         os.makedirs(directory)
+        
+    # Get current date and time about extract
+    current_datetime = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     
     # Set the file name to the full path
     filename = os.path.join(directory, f"extract_{name}.pdf")
@@ -133,6 +136,7 @@ def generate_extract(name, saldo):
     c.setFont("Helvetica", 12)
     c.drawString(100, 740, f"Extract for Client: {name}")
     c.drawString(100, 720, f"Account Balance: ${saldo:,.2f}")
+    c.drawString(100, 700, f"Generated on: {current_datetime}")
     
     # Save the file PDF
     c.save()
